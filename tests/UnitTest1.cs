@@ -15,8 +15,8 @@ namespace tests
             Calculator.Current = 4;
             Calculator.ProcessOperation(new EqualsOperation());
 
-            Assert.AreEqual(3.0, Calculator.Current);
-            
+            Assert.AreEqual(7.0, Calculator.Current);
+
         }
     }
 }
