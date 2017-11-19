@@ -8,7 +8,7 @@ namespace Calculator.Domain
 
         public List<Calculation> Calculations { get; set; }
         public double Memory { get; set; }
-
+        public double Current { get; set; }
 
         public void ProcessOperation(IOperation operation)
         {
@@ -16,4 +16,5 @@ namespace Calculator.Domain
         }
 
     }
+
 }

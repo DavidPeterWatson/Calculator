@@ -8,26 +8,32 @@ namespace Calculator.Domain
         {
             //Continuously loop through operations reducing the highest precendence operation into the number of the operation before it until there is only 1 operation left
 
-            var firstCalculation = calculator.Calculations.First();
+            var lastCalculation = new Calculation();
+            lastCalculation.Number = calculator.Current;
+            lastCalculation.Operator = new Add();
+
+            calculator.Calculations.Add(lastCalculation);
 
             while (calculator.Calculations.Count > 1)
             {
-    
+
                 var PrecedenceQuery =
                 from Calculation findCalculation in calculator.Calculations
-                where findCalculation != firstCalculation
+                where findCalculation != lastCalculation
                 orderby findCalculation.Operator.Precedence ascending
                 select findCalculation;
 
-                var nextCalculation = PrecedenceQuery.FirstOrDefault();
+                var calculation = PrecedenceQuery.FirstOrDefault();
 
-                var previousCalculation = calculator.Calculations[calculator.Calculations.IndexOf(nextCalculation) - 1];
+                var nextCalculation = calculator.Calculations[calculator.Calculations.IndexOf(calculation) + 1];
 
-                previousCalculation.Number = nextCalculation.Calculate(previousCalculation);
+                nextCalculation.Number = calculation.Calculate(nextCalculation);
 
-                calculator.Calculations.Remove(nextCalculation);
+                calculator.Calculations.Remove(calculation);
 
             }
+
+            calculator.Current = calculator.Calculations.Last().Number;
 
         }
     }

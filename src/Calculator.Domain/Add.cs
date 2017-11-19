@@ -1,12 +1,12 @@
 namespace Calculator.Domain
 {
-    public class Add : ICalculation
+    public class Add : IOperator
     {
         public int Precedence { get => 5; }
 
-        public double Calculate(Calculation operation, Calculation previousOperation)
+        public double Calculate(Calculation calculation, Calculation nextCalculation)
         {
-            return previousOperation.Number + operation.Number;
+            return calculation.Number + nextCalculation.Number;
         }
     }
 }

@@ -3,7 +3,7 @@ namespace Calculator.Domain
     public interface ICalculation
     {
 
-        double Calculate(Calculation calculation, Calculation previousCalculation);
+        double Calculate(Calculation calculation, Calculation nextCalculation);
         int Precedence { get; }
 
     }

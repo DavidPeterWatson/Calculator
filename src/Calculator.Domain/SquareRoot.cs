@@ -1,12 +1,11 @@
+
 namespace Calculator.Domain
 {
-    public class SquareRoot : ICalculation
+    public class SquareRoot : IOperation
     {
-        public int Precedence => 1;
-
-        public double Calculate(Operation operation, Operation previousOperation)
+        public void ProcessOperation(Calculator calculator)
         {
-            operation.Number;
+            calculator.Current = System.Math.Sqrt(calculator.Current);
         }
     }
 }
