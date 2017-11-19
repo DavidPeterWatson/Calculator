@@ -97,6 +97,7 @@ namespace tests
             double Answer = Number1 + Number2 * Number3 - Number4;
 
             var Calculator = new Calculator.Domain.Calculator();
+            
             Calculator.Current = Number1;
             Calculator.ProcessOperation(new CalculationOperation(new Add()));
 
