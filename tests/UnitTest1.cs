@@ -11,15 +11,16 @@ namespace tests
         public void TestAddition()
         {
             var Random = new System.Random();
-            double Answer = 0.0;
+            double Number1 = Random.Next();
+            double Number2 = Random.Next();
+            double Answer = Number1 + Number2;
 
             var Calculator = new Calculator.Domain.Calculator();
-            Calculator.Current = Random.Next();
-            Answer += Calculator.Current;
+
+            Calculator.Current = Number1;
             Calculator.ProcessOperation(new CalculationOperation(new Add()));
 
-            Calculator.Current = Random.Next();
-            Answer += Calculator.Current;
+            Calculator.Current = Number2;
             Calculator.ProcessOperation(new EqualsOperation());
 
             Assert.AreEqual(Answer, Calculator.Current);
@@ -30,15 +31,15 @@ namespace tests
         public void TestSubtraction()
         {
             var Random = new System.Random();
-            double Answer = 0.0;
+            double Number1 = Random.Next();
+            double Number2 = Random.Next();
+            double Answer = Number1 - Number2;
 
             var Calculator = new Calculator.Domain.Calculator();
-            Calculator.Current = Random.Next();
-            Answer += Calculator.Current;
+            Calculator.Current = Number1;
             Calculator.ProcessOperation(new CalculationOperation(new Subtract()));
 
-            Calculator.Current = Random.Next();
-            Answer -= Calculator.Current;
+            Calculator.Current = Number2;
             Calculator.ProcessOperation(new EqualsOperation());
 
             Assert.AreEqual(Answer, Calculator.Current);
@@ -49,15 +50,16 @@ namespace tests
         public void TestMultiplication()
         {
             var Random = new System.Random();
-            double Answer = 0.0;
+            double Number1 = Random.Next();
+            double Number2 = Random.Next();
+            double Answer = Number1 * Number2;
 
             var Calculator = new Calculator.Domain.Calculator();
-            Calculator.Current = Random.Next();
-            Answer += Calculator.Current;
+            
+            Calculator.Current = Number1;
             Calculator.ProcessOperation(new CalculationOperation(new Multiply()));
 
-            Calculator.Current = Random.Next();
-            Answer *= Calculator.Current;
+            Calculator.Current = Number2;
             Calculator.ProcessOperation(new EqualsOperation());
 
             Assert.AreEqual(Answer, Calculator.Current);
@@ -68,20 +70,47 @@ namespace tests
         public void TestDivision()
         {
             var Random = new System.Random();
-            double Answer = 0.0;
+            double Number1 = Random.Next();
+            double Number2 = Random.Next();
+            double Answer = Number1 / Number2;
 
             var Calculator = new Calculator.Domain.Calculator();
-            Calculator.Current = Random.Next();
-            Answer += Calculator.Current;
+            Calculator.Current = Number1;
             Calculator.ProcessOperation(new CalculationOperation(new Divide()));
 
-            Calculator.Current = Random.Next();
-            Answer /= Calculator.Current;
+            Calculator.Current = Number2;
             Calculator.ProcessOperation(new EqualsOperation());
 
             Assert.AreEqual(Answer, Calculator.Current);
 
         }
 
+        [TestMethod]
+        public void TestBODMAS()
+        {
+            var Random = new System.Random();
+            double Number1 = Random.Next();
+            double Number2 = Random.Next();
+            double Number3 = Random.Next();
+            double Number4 = Random.Next();
+
+            double Answer = Number1 + Number2 * Number3 - Number4;
+
+            var Calculator = new Calculator.Domain.Calculator();
+            Calculator.Current = Number1;
+            Calculator.ProcessOperation(new CalculationOperation(new Add()));
+
+            Calculator.Current = Number2;
+            Calculator.ProcessOperation(new CalculationOperation(new Multiply()));
+
+            Calculator.Current = Number3;
+            Calculator.ProcessOperation(new CalculationOperation(new Subtract()));
+
+            Calculator.Current = Number4;
+            Calculator.ProcessOperation(new EqualsOperation());
+
+            Assert.AreEqual(Answer, Calculator.Current);
+
+        }
     }
 }
